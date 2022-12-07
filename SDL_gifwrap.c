@@ -140,6 +140,7 @@ DECLSPEC GIF_Image* SDLCALL GIF_LoadImage(const char* filename)
         }
         
         global_palette = GIF_CreatePalette(gif->SColorMap->ColorCount, global_colors);
+        SDL_free(global_colors);
     }
     
     for(j = 0; j < gif->ExtensionBlockCount; ++j)
@@ -191,6 +192,7 @@ DECLSPEC GIF_Image* SDLCALL GIF_LoadImage(const char* filename)
             }
             
             frame->local_palette = GIF_CreatePalette(img->ImageDesc.ColorMap->ColorCount, local_colors);
+            SDL_free(local_colors);
         }
         
         SDL_Palette* pal = global_palette;
